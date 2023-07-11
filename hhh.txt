@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Driver {
+    private String name;
+    private double rating;
+    private double distance;
+
+    public Driver(String name, double rating, double distance) {
+        this.name = name;
+        this.rating = rating;
+        this.distance = distance;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Driver: " + name + ", Rating: " + rating + ", Distance: " + distance + " km";
+    }
+}
+
+class RideService {
+    private List<Driver> nearbyDrivers;
+
+    public RideService() {
+        nearbyDrivers = new ArrayList<>();
+        nearbyDrivers.add(new Driver("John", 4.2, 2.5));
+        nearbyDrivers.add(new Driver("Alice", 4.5, 3.0));
+        nearbyDrivers.add(new Driver("Bob", 3.9, 1.8));
+        nearbyDrivers.add(new Driver("Emily", 4.8, 2.2));
+        nearbyDrivers.add(new Driver("Mike", 4.1, 2.9));
+    }
+
+    public Driver findNearestDriver(double maxRating, double maxDistance) {
+        for (Driver driver : nearbyDrivers) {
+            if (driver.getRating() >= maxRating && driver.getDistance() <= maxDistance) {
+                return driver;
+            }
+        }
+        return null;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        double maxRating = 4.0; // Minimum rating required for a driver
+        double maxDistance = 3.0; // Maximum distance allowed for a driver
+
+        RideService rideService = new RideService();
+        Driver nearestDriver = rideService.findNearestDriver(maxRating, maxDistance);
+
+        if (nearestDriver != null) {
+            System.out.println("Nearest Driver Found: " + nearestDriver);
+        } else {
+            System.out.println("No driver found meeting the conditions.");
+        }
+    }
+}

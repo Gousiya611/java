@@ -1,0 +1,68 @@
+swap
+
+1. with out using temp variable
+start
+read a,b
+a=a+b
+b=a-b
+a=a-b
+print a,b
+stop
+2. using temp variable
+ start
+read a,b
+temp=a
+a=b
+b=temp
+print a,b
+stop
+
+
+search algorithms are two
+1.Linear search
+Time complexity for this is high as it depends on the number of elements in array and the position it is there
+2.Binary Search
+here, elements should be in order
+either ascending r descending order
+time complexity is O(log n)
+which is less than the linear search
+
+PROCESS:
+find the mid value 
+then compare with search element
+if equal then found
+if less than i.e, number is greater than mid then we search in second half array if less than mid then search in first half
+
+
+
+ 1.Sorting algorithm
+find the minimun value in array and sort to index 0 position 
+again find min in the remaining array and sort to next index position repepat the same until sorting is done
+
+TIME COMPLEXITY IS n2 (n square)
+
+2.BUBBLE SORT:
+ i=0;j=1
+compare adjacent values and swap them if i>j 
+again increment i=1;j=2;
+compare them and swap in ascending order
+comtinue this until sort operation is done
+ 
+
+Linked list
+head: first node of the linked list
+ tial : last node where address is not given i.e, end of the list
+node is combination of memory location and address of next node combined together to form node
+ 
+Operations on linked list;
+adding
+add at begin
+add at middle
+add at last
+removing
+delete at start
+delete at middle
+delete ar last
+accessing
+
+ 

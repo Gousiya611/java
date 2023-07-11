@@ -1,0 +1,126 @@
+
+
+class Car {
+    private String model;
+    private double showroomPrice;
+
+    public Car(String model, double showroomPrice) {
+        this.model = model;
+        this.showroomPrice = showroomPrice;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public double getShowroomPrice() {
+        return showroomPrice;
+    }
+}
+
+class BillingProcess {
+    private static final double RTO_COST = 113990;
+    private static final double INSURANCE_COST = 47300;
+    private static final double TCS_CHARGES = 11000;
+    private static final double ADDITIONAL_ACCESSORIES_COST = 15000;
+    private static final double MAX_DISCOUNT_AMOUNT = 30000;
+
+    private Car car;
+    private boolean optInsurance;
+    private boolean optAdditionalAccessories;
+    private double discount;
+
+    public void selectCar(Car selectedCar) {
+        car = selectedCar;
+    }
+
+    public void setInsuranceOption(boolean optInsurance) {
+        this.optInsurance = optInsurance;
+    }
+
+    public void setAdditionalAccessoriesOption(boolean optAdditionalAccessories) {
+        this.optAdditionalAccessories = optAdditionalAccessories;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
+
+    public void calculateTotalAmount() {
+        double totalAmount = car.getShowroomPrice();
+
+        if (optInsurance) {
+            totalAmount += INSURANCE_COST;
+        }
+
+        if (optAdditionalAccessories) {
+            totalAmount += ADDITIONAL_ACCESSORIES_COST;
+        }
+
+        if (discount > 0 && (optInsurance || optAdditionalAccessories)) {
+            if (discount > MAX_DISCOUNT_AMOUNT) {
+                discount = MAX_DISCOUNT_AMOUNT;
+                System.out.println("Maximum discount amount applied: Rs " + MAX_DISCOUNT_AMOUNT);
+            }
+            totalAmount -= discount;
+        } else if (discount > 0) {
+            System.out.println("Error: Discount cannot be applied without selecting insurance or additional accessories.");
+            totalAmount = 0;
+        } else if (!optInsurance && !optAdditionalAccessories) {
+            System.out.println("Error: Please select at least one additional feature (insurance or additional accessories).");
+            totalAmount = 0;
+        }
+
+        totalAmount += RTO_COST + TCS_CHARGES;
+        System.out.println("Total Amount to be Paid: Rs " + totalAmount);
+    }
+}
+
+// public class CarBillingSystem {
+//     public static void main(String[] args) {
+//         Car[] cars = {
+//                 new Car("Polo Trendline", 8.70),
+//                 new Car("Polo Highline", 10.09),
+//                 new Car("Virtus Trendline", 11.05),
+//                 new Car("Virtus Highline", 13.08),
+//                 new Car("Taigun Trendline", 14.89),
+//                 new Car("Taigun Highline", 15.42),
+//                 new Car("Taigun Topline", 17.71)
+//         };
+
+//         Scanner scanner = new Scanner(System.in);
+//         BillingProcess billingProcess = new BillingProcess();
+
+//         System.out.println("Available Car Models:");
+//         for (int i = 0; i < cars.length; i++) {
+//             System.out.println((i + 1) + ". " + cars[i].getModel());
+//         }
+
+//         System.out.print("Enter the Car Model Number: ");
+//         int carModelNumber = scanner.nextInt();
+
+//         Car selectedCar = cars[carModelNumber - 1];
+//         billingProcess.selectCar(selectedCar);
+
+//         System.out.print("Opt for Insurance (Y/N): ");
+//         String optInsuranceStr = scanner.next();
+//         boolean optInsurance = optInsuranceStr.equalsIgnoreCase("Y");
+//         billingProcess.setInsuranceOption(optInsurance);
+
+//         System.out.print("Opt for Additional Accessories (Y/N): ");
+//         String optAdditionalAccessoriesStr = scanner.next();
+//         boolean optAdditionalAccessories = optAdditionalAccessoriesStr.equalsIgnoreCase("Y");
+//         billingProcess.setAdditionalAccessoriesOption(optAdditionalAccessories);
+
+//         if (optInsurance || optAdditionalAccessories) {
+//             System.out.print("Enter Dealer Discount Amount (in Rs): ");
+//             double discount = scanner.nextDouble();
+//             billingProcess.setDiscount(discount);
+//         } else {
+//             billingProcess.setDiscount(0);
+//         }
+
+//         System.out.println("\nCalculating Total Amount...");
+//         billingProcess.calculateTotalAmount();
+//     }
+// }
