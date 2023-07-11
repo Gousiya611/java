@@ -28,4 +28,57 @@ public class    Linkedlist{
         this.size+=1;
     }
    }
+   public void addStarting(String i){
+    Node n = new Node();
+    n.item=i;
+    n.next=this.head;
+    this.head=n;
+
+
+   }
+   public void addingInMiddle(String i,int pos){
+    Node node =new Node();
+    Node current = this.head;
+    if(this.head!=null&&pos<=this.size){
+        for(int j=0;j<pos;j++){
+            current = current.next;
+        }
+    }
+
+
+   }
+   public void deleteNode(){
+    if(this.head==null){
+        
+        Node n = new Node();
+        n.item = i;
+        n.next = this.head;
+        this.head = n;
+    }
+
+Veera Prasad 12:44 PM
+public void addAtMiddle(String i,int pos)
+	{
+		Node node=new Node();
+		Node current=this.head;
+		if(this.head!=null && pos<=this.size)
+		{
+			for(int j=0;j<pos;j++) {
+				current=current.next;
+			}
+			node.item=i;
+			node.next=current.next;
+			current.next=node;
+			this.size+=1;
+		}
+		else
+		{
+			System.out.println("position is greater than size");
+		}
+	}
+    }
+   }
+   public static void main(String[] args){
+
+   }
     }
